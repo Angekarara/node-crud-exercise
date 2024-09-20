@@ -41,6 +41,16 @@ app.get("/items/:id", async (req, res) => {
     }
 })
 
+app.put("/items/:id", async (req, res) => {
+    try {
+        const id = req.params.id
+        const item = Item.findByIdAndDelete(id, req.body)
+        res.status(200).send(item)
+    } catch (error) {
+        res.status(500).send("internal server error")
+    }
+})
+
 app.delete("/items/:id", async (req, res) => {
     try {
         const id = req.params.id
@@ -50,5 +60,6 @@ app.delete("/items/:id", async (req, res) => {
         res.status(400).send("bad request")
     }
 })
+
 
 app.listen(5000)
