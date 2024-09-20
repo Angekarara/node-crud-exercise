@@ -44,7 +44,7 @@ app.get("/items/:id", async (req, res) => {
 app.put("/items/:id", async (req, res) => {
     try {
         const id = req.params.id
-        const item = Item.findByIdAndDelete(id, req.body)
+        const item = await Item.findByIdAndDelete(id, req.body)
         res.status(200).send(item)
     } catch (error) {
         res.status(500).send("internal server error")
